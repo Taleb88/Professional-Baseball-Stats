@@ -4,9 +4,6 @@ import pandas as pd
 # 2/16/2025 - IN PROGRESS
 los_angeles_dodgers_offensive_stats_df = pd.read_csv('mlb/2016_los_angeles_dodgers_offensive_stats.csv')
 
-# df = df.loc[df['Player'] != 'Player']
-los_angeles_dodgers_offensive_stats_df = los_angeles_dodgers_offensive_stats_df.sort_values(by='RBI', ascending=False)
-
 print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
 
 def filtering(df):
@@ -20,7 +17,7 @@ def filtering(df):
 
 los_angeles_dodgers_offensive_stats_df = filtering(los_angeles_dodgers_offensive_stats_df)
 
-los_angeles_dodgers_offensive_stats_df = los_angeles_dodgers_offensive_stats_df.sort_values(by=['RBI'], ascending=False)
+los_angeles_dodgers_offensive_stats_df['RBI'] = los_angeles_dodgers_offensive_stats_df['RBI']
 
 print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
 
