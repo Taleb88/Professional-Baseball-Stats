@@ -17,8 +17,12 @@ def filtering(df):
 
 los_angeles_dodgers_offensive_stats_df = filtering(los_angeles_dodgers_offensive_stats_df)
 
-los_angeles_dodgers_offensive_stats_df['RBI'] = los_angeles_dodgers_offensive_stats_df['RBI']
+los_angeles_dodgers_offensive_stats_df['RBI'] = los_angeles_dodgers_offensive_stats_df['RBI'].astype(int)
+los_angeles_dodgers_offensive_stats_df.to_csv('2016_los_angeles_dodgers_offensive_stats.csv', index=False)
 
 print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
 
+los_angeles_dodgers_offensive_stats_df = los_angeles_dodgers_offensive_stats_df.sort_values(by=['RBI'],ascending=False)
+
+print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
 los_angeles_dodgers_offensive_stats_df.to_csv('2016_los_angeles_dodgers_offensive_stats.csv', index=False)
