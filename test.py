@@ -9,13 +9,18 @@ df = df.sort_values(by=['RBI'], ascending=False)
 
 df.to_csv('test.csv', index=False)
 
-def filtering(x):
-    return df[(df['Player'] != 'Player') | 
-              (df['Player'] != '') | 
-              (df['Player'] != 'Player') | 
-              (df['Player'] != 'Player').sort_values(by=['RBI'], ascending=False)]
+def filtering(df):
+    try: 
+        return df[(df['Player'] != 'Player') | 
+                (df['Player'] != 'Team Totals') | 
+                (df['Player'] != 'Non-Pitcher Totals') | 
+                (df['Player'] != 'Pitcher Totals')]
+    except Exception as e:
+        print('cannot filter rows of dataframe accordingly')
 
 df = filtering(df)
+
+df = df.sort_values(by=['RBI'], ascending=False)
 
 print(df)
 
