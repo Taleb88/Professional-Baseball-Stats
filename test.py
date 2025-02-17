@@ -25,7 +25,7 @@ for x in range(2016,2019):
         print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
 
 
-# 2/16/2025 - IN PROGRESS
+# 2/16/2025 - SUCCESS
 # for x in range(2016,2019):
 #     new_york_yankees_offensive_stats_df = pd.read_csv(f'mlb/{x}_new_york_yankees_offensive_stats.csv')
 #     print('\nnew_york_yankees_offensive_stats_df:\n',new_york_yankees_offensive_stats_df)
