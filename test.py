@@ -1,6 +1,7 @@
 import pandas as pd
 
 
+# 2/16/2025 - SUCCESS - TO BE USED
 team = ['new_york_yankees', 'atlanta_braves']
 for x in range(2016,2019):
     try: 
@@ -20,6 +21,7 @@ for x in range(2016,2019):
             offensive_stats_df = player_column(offensive_stats_df)
             offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
             offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
+            offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
             offensive_stats_df.to_csv(f'csv/{x}_{y}_offensive_stats.csv', index=False)
 
             print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
