@@ -76,14 +76,14 @@ for x in range(2016,current_year):
     minnesota_twins_offensive_stats_df = minnesota_twins_stats_df[0]
     minnesota_twins_offensive_stats_df.to_csv(f'mlb/{x}_minnesota_offensive_stats.csv', index=False)
     time.sleep(20)
-    new_york_yankees_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/NYY/{x}.shtml')
-    new_york_yankees_offensive_stats_df = new_york_yankees_stats_df[0]
-    new_york_yankees_offensive_stats_df.to_csv(f'mlb/{x}_new_york_yankees_offensive_stats.csv', index=False)
-    time.sleep(20)
     new_york_mets_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/NYM/{x}.shtml')
     new_york_mets_offensive_stats_df = new_york_mets_stats_df[0]
     new_york_mets_offensive_stats_df.to_csv(f'mlb/{x}_new_york_mets_offensive_stats.csv', index=False)
     time.sleep(20)
+    new_york_yankees_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/NYY/{x}.shtml')
+    new_york_yankees_offensive_stats_df = new_york_yankees_stats_df[0]
+    new_york_yankees_offensive_stats_df.to_csv(f'mlb/{x}_new_york_yankees_offensive_stats.csv', index=False)
+    time.sleep(20)    
     philadelphia_phillies_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/PHI/{x}.shtml')
     philadelphia_phillies_offensive_stats_df = philadelphia_phillies_stats_df[0]
     philadelphia_phillies_offensive_stats_df.to_csv(f'mlb/{x}_philadelphia_offensive_stats.csv', index=False)
@@ -123,12 +123,11 @@ for x in range(2016,current_year):
     washington_nationals_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/WSN/{x}.shtml')
     washington_nationals_offensive_stats_df = washington_nationals_stats_df[0]
     washington_nationals_offensive_stats_df.to_csv(f'mlb/{x}_washington_nationals_offensive_stats.csv', index=False)
-    time.sleep(20)
+    time.sleep(20) # timing server requests accordingly to prevent 429 error
 
 # oakland athletics 2016-2024 stats
 for x in range(2016,2025):
     oakland_athletics_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/OAK/{x}.shtml')
     oakland_athletics_offensive_stats = oakland_athletics_stats_df[0]
     oakland_athletics_offensive_stats.to_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv', index=False)
-    # timing server requests accordingly to prevent 429 error
-    time.sleep(20)
+    time.sleep(20) # timing server requests accordingly to prevent 429 error

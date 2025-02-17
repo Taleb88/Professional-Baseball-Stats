@@ -2,7 +2,16 @@ import pandas as pd
 
 
 # 2/16/2025 - SUCCESS - TO BE USED
-team = ['new_york_yankees', 'atlanta_braves']
+team = ['arizona_diamondbacks','atlanta_braves','baltimore_orioles',
+        'boston red_sox','chicago_cubs','chicago_white_sox',
+        'cincinnati_reds','cleveland_guardians','colorado_rockies',
+        'detroit_tigers','houston_astros','kansas_city_royals',
+        'los_angeles_angels','los_angeles_dodgers','miami_marlins',
+        'milwaukee_brewers','minnesota_twins','new_york_mets',
+        'new_york_yankees','philadelphia_phillies','pittsburgh_pirates',
+        'san_diego_padres','san_francisco_giants','seattle_mariners',
+        'st_louis_cardinals','tampa_bay_rays','texa_rangers','toronto_blue_jays',
+        'washington_nationals']
 for x in range(2016,2020):
     try: 
         for y in team:
