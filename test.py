@@ -1,5 +1,15 @@
 import pandas as pd
+import os
 
+# 2/17/2025 - IN PROGRESS - DELETE UNNECESSARY FILES
+array = ['minnesota', 'philadelphia']
+for x in range(2016,2025):
+    for y in array:
+        if os.path.exists(f'mlb/{x}_{y}_offensive_stats.csv'):
+            os.remove(f'mlb/{x}_{y}_offensive_stats.csv')
+        else:
+            print('the files do not exist in the mlb folder')
+        
 
 # 2/16/2025 - SUCCESS - TO BE USED
 # team = ['arizona_diamondbacks','atlanta_braves','baltimore_orioles',
