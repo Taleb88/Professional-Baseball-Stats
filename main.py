@@ -124,7 +124,7 @@ for x in range(2016,current_year):
         washington_nationals_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/WSN/{x}.shtml')
         washington_nationals_offensive_stats_df = washington_nationals_stats_df[0]
         washington_nationals_offensive_stats_df.to_csv(f'mlb/{x}_washington_nationals_offensive_stats.csv', index=False)
-        time.sleep(20) # timing server requests accordingly to prevent 429 error # timing server requests accordingly to prevent 429 error
+        time.sleep(20) # timing server requests accordingly to prevent 429 error 
     except Exception as e:
         print(f'cannot extra data from website:{type(e)}')
 
@@ -134,7 +134,7 @@ for x in range(2016,2025):
         oakland_athletics_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/OAK/{x}.shtml')
         oakland_athletics_offensive_stats = oakland_athletics_stats_df[0]
         oakland_athletics_offensive_stats.to_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv', index=False)
-        time.sleep(20) # timing server requests accordingly to prevent 429 error # timing server requests accordingly to prevent 429 error
+        time.sleep(20) # timing server requests accordingly to prevent 429 error 
     except Exception as e:
         print(f'cannot extra data from website:{type(e)}')
 
@@ -154,13 +154,13 @@ for x in range(2016,current_year):
         for y in mlb_teams:
             offensive_stats_df = pd.read_csv(f'mlb/{x}_{y}_offensive_stats.csv')
             print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
-            
+            # filtering out irrevalent values in Player column from all dataframes
             def player_column(df):
                 try: 
                     return df[(df['Player'] != 'Player') & 
-                            (df['Player'] != 'Team Totals') & 
-                            (df['Player'] != 'Non-Pitcher Totals') & 
-                            (df['Player'] != 'Pitcher Totals')]
+                              (df['Player'] != 'Team Totals') & 
+                              (df['Player'] != 'Non-Pitcher Totals') & 
+                              (df['Player'] != 'Pitcher Totals')]
                 except Exception as e:
                     print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
 
@@ -173,17 +173,17 @@ for x in range(2016,current_year):
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
 
-for x in range(2016,2024):
+for x in range(2016,2025):
     try: 
         offensive_stats_df = pd.read_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv')
         print(f'\n{x}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
-                
+        # filtering out irrevalent values in Player column from all dataframes                
         def player_column(df):
             try: 
                 return df[(df['Player'] != 'Player') & 
-                        (df['Player'] != 'Team Totals') & 
-                        (df['Player'] != 'Non-Pitcher Totals') & 
-                        (df['Player'] != 'Pitcher Totals')]
+                          (df['Player'] != 'Team Totals') & 
+                          (df['Player'] != 'Non-Pitcher Totals') & 
+                          (df['Player'] != 'Pitcher Totals')]
             except Exception as e:
                 print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
        
