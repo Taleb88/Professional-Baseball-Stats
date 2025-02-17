@@ -3,7 +3,7 @@ import pandas as pd
 
 # 2/16/2025 - SUCCESS - TO BE USED
 team = ['new_york_yankees', 'atlanta_braves']
-for x in range(2016,2019):
+for x in range(2016,2020):
     try: 
         for y in team:
             offensive_stats_df = pd.read_csv(f'mlb/{x}_{y}_offensive_stats.csv')
