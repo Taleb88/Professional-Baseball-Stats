@@ -1,34 +1,58 @@
 import pandas as pd
 
 
-# 2/16/2025 - IN PROGRESS
+team = ['new_york_yankees', 'atlanta_braves']
 for x in range(2016,2019):
-    los_angeles_dodgers_offensive_stats_df = pd.read_csv(f'mlb/{x}_los_angeles_dodgers_offensive_stats.csv')
-    print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
+    for y in team:
+        offensive_stats_df = pd.read_csv(f'mlb/{x}_{y}_offensive_stats.csv')
+        print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
+        
+        def player_column(df):
+            try: 
+                return df[(df['Player'] != 'Player') & 
+                        (df['Player'] != 'Team Totals') & 
+                        (df['Player'] != 'Non-Pitcher Totals') & 
+                        (df['Player'] != 'Pitcher Totals')]
+            except Exception as e:
+                print('cannot filter rows of dataframe accordingly')
+
+        offensive_stats_df = player_column(offensive_stats_df)
+        offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
+        offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False)
+        offensive_stats_df = offensive_stats_df.drop('Rk', axis=1)
+        offensive_stats_df.to_csv(f'csv/{x}_{y}_offensive_stats.csv', index=False)
+
+        print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
+
+
+# 2/16/2025 - IN PROGRESS
+# for x in range(2016,2019):
+#     new_york_yankees_offensive_stats_df = pd.read_csv(f'mlb/{x}_new_york_yankees_offensive_stats.csv')
+#     print('\nnew_york_yankees_offensive_stats_df:\n',new_york_yankees_offensive_stats_df)
     
-    def player_column(df):
-        try: 
-            return df[(df['Player'] != 'Player') & 
-                    (df['Player'] != 'Team Totals') & 
-                    (df['Player'] != 'Non-Pitcher Totals') & 
-                    (df['Player'] != 'Pitcher Totals')]
-        except Exception as e:
-            print('cannot filter rows of dataframe accordingly')
+#     def player_column(df):
+#         try: 
+#             return df[(df['Player'] != 'Player') & 
+#                     (df['Player'] != 'Team Totals') & 
+#                     (df['Player'] != 'Non-Pitcher Totals') & 
+#                     (df['Player'] != 'Pitcher Totals')]
+#         except Exception as e:
+#             print('cannot filter rows of dataframe accordingly')
 
-    los_angeles_dodgers_offensive_stats_df = player_column(los_angeles_dodgers_offensive_stats_df)
-    los_angeles_dodgers_offensive_stats_df['RBI'] = los_angeles_dodgers_offensive_stats_df['RBI'].astype(int)
-    los_angeles_dodgers_offensive_stats_df = los_angeles_dodgers_offensive_stats_df.sort_values(by=['RBI'], ascending=False)
-    los_angeles_dodgers_offensive_stats_df = los_angeles_dodgers_offensive_stats_df.drop('Rk', axis=1)
-    los_angeles_dodgers_offensive_stats_df.to_csv(f'csv/{x}_los_angeles_dodgers_offensive_stats.csv', index=False)
+#     new_york_yankees_offensive_stats_df = player_column(new_york_yankees_offensive_stats_df)
+#     new_york_yankees_offensive_stats_df['RBI'] = new_york_yankees_offensive_stats_df['RBI'].astype(int)
+#     new_york_yankees_offensive_stats_df = new_york_yankees_offensive_stats_df.sort_values(by=['RBI'], ascending=False)
+#     new_york_yankees_offensive_stats_df = new_york_yankees_offensive_stats_df.drop('Rk', axis=1)
+#     new_york_yankees_offensive_stats_df.to_csv(f'csv/{x}_new_york_yankees_offensive_stats.csv', index=False)
 
-    print(f'\n{x}_los_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
+#     print(f'\n{x}_new_york_yankees_offensive_stats_df:\n',new_york_yankees_offensive_stats_df)
 
 
 
 # 2/16/2025 - IN PROGRESS - SUCCESS
-# los_angeles_dodgers_offensive_stats_df = pd.read_csv('mlb/2016_los_angeles_dodgers_offensive_stats.csv')
+# new_york_yankees_offensive_stats_df = pd.read_csv('mlb/2016_new_york_yankees_offensive_stats.csv')
 
-# print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
+# print('\nnew_york_yankees_offensive_stats_df:\n',new_york_yankees_offensive_stats_df)
 
 # def filtering(df):
 #     try: 
@@ -39,14 +63,14 @@ for x in range(2016,2019):
 #     except Exception as e:
 #         print('cannot filter rows of dataframe accordingly')
 
-# los_angeles_dodgers_offensive_stats_df = filtering(los_angeles_dodgers_offensive_stats_df)
+# new_york_yankees_offensive_stats_df = filtering(new_york_yankees_offensive_stats_df)
 
-# los_angeles_dodgers_offensive_stats_df['RBI'] = los_angeles_dodgers_offensive_stats_df['RBI'].astype(int)
-# los_angeles_dodgers_offensive_stats_df.to_csv('2016_los_angeles_dodgers_offensive_stats.csv', index=False)
+# new_york_yankees_offensive_stats_df['RBI'] = new_york_yankees_offensive_stats_df['RBI'].astype(int)
+# new_york_yankees_offensive_stats_df.to_csv('2016_new_york_yankees_offensive_stats.csv', index=False)
 
-# print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
+# print('\nnew_york_yankees_offensive_stats_df:\n',new_york_yankees_offensive_stats_df)
 
-# los_angeles_dodgers_offensive_stats_df = los_angeles_dodgers_offensive_stats_df.sort_values(by=['RBI'],ascending=False)
+# new_york_yankees_offensive_stats_df = new_york_yankees_offensive_stats_df.sort_values(by=['RBI'],ascending=False)
 
-# print('\nlos_angeles_dodgers_offensive_stats_df:\n',los_angeles_dodgers_offensive_stats_df)
-# los_angeles_dodgers_offensive_stats_df.to_csv('2016_los_angeles_dodgers_offensive_stats.csv', index=False)
+# print('\nnew_york_yankees_offensive_stats_df:\n',new_york_yankees_offensive_stats_df)
+# new_york_yankees_offensive_stats_df.to_csv('2016_new_york_yankees_offensive_stats.csv', index=False)
