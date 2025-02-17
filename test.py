@@ -3,27 +3,28 @@ import pandas as pd
 
 team = ['new_york_yankees', 'atlanta_braves']
 for x in range(2016,2019):
-    for y in team:
-        offensive_stats_df = pd.read_csv(f'mlb/{x}_{y}_offensive_stats.csv')
-        print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
-        
-        def player_column(df):
-            try: 
-                return df[(df['Player'] != 'Player') & 
-                        (df['Player'] != 'Team Totals') & 
-                        (df['Player'] != 'Non-Pitcher Totals') & 
-                        (df['Player'] != 'Pitcher Totals')]
-            except Exception as e:
-                print('cannot filter rows of dataframe accordingly')
+    try: 
+        for y in team:
+            offensive_stats_df = pd.read_csv(f'mlb/{x}_{y}_offensive_stats.csv')
+            print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
+            
+            def player_column(df):
+                try: 
+                    return df[(df['Player'] != 'Player') & 
+                            (df['Player'] != 'Team Totals') & 
+                            (df['Player'] != 'Non-Pitcher Totals') & 
+                            (df['Player'] != 'Pitcher Totals')]
+                except Exception as e:
+                    print('cannot filter rows of dataframe accordingly')
 
-        offensive_stats_df = player_column(offensive_stats_df)
-        offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
-        offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False)
-        offensive_stats_df = offensive_stats_df.drop('Rk', axis=1)
-        offensive_stats_df.to_csv(f'csv/{x}_{y}_offensive_stats.csv', index=False)
+            offensive_stats_df = player_column(offensive_stats_df)
+            offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
+            offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
+            offensive_stats_df.to_csv(f'csv/{x}_{y}_offensive_stats.csv', index=False)
 
-        print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
-
+            print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
+    except Exception as e:
+        print(f'unable to make proper updates: {type(e)}')
 
 # 2/16/2025 - SUCCESS
 # for x in range(2016,2019):
