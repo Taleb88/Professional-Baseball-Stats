@@ -16,6 +16,7 @@ mlb_teams = ['arizona_diamondbacks','atlanta_braves','baltimore_orioles',
         'san_diego_padres','san_francisco_giants','seattle_mariners',
         'st_louis_cardinals','tampa_bay_rays','texas_rangers','toronto_blue_jays',
         'washington_nationals']
+# offensive stats
 for x in range(2016,current_year):
     try: 
         for y in mlb_teams:
@@ -39,8 +40,7 @@ for x in range(2016,current_year):
             print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
-        
-# oakland athletics only
+# oakland athletics only - offensive stats
 for x in range(2016,2025):
     try: 
         offensive_stats_df = pd.read_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv')
@@ -61,5 +61,42 @@ for x in range(2016,2025):
         offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
         offensive_stats_df.to_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv', index=False)
         print(f'\n{x}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
+    except Exception as e:
+        print(f'unable to make proper updates: {type(e)}')  
+# pitching stats
+for x in range(2016,current_year):
+    try: 
+        for y in mlb_teams:
+            pitching_stats_df = pd.read_csv(f'mlb/{x}_{y}_pitching_stats.csv')
+            print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
+            # filtering out irrevalent values in Player column from all dataframes
+            def player_column(df):
+                try: 
+                    return df[(df['Player'] != 'Player') & 
+                              (df['Player'] != 'Team Totals')]
+                except Exception as e:
+                    print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
+
+            pitching_stats_df = player_column(pitching_stats_df)
+            pitching_stats_df.to_csv(f'mlb/{x}_{y}_pitching_stats.csv', index=False)
+            print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
+    except Exception as e:
+        print(f'unable to make proper updates: {type(e)}')
+# oakland athletics only - pitching stats
+for x in range(2016,2025):
+    try: 
+        pitching_stats_df = pd.read_csv(f'mlb/{x}_oakland_athletics_pitching_stats.csv')
+        print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)
+        # filtering out irrevalent values in Player column from all dataframes                
+        def player_column(df):
+            try: 
+                return df[(df['Player'] != 'Player') & 
+                          (df['Player'] != 'Team Totals')]
+            except Exception as e:
+                print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
+       
+        pitching_stats_df = player_column(pitching_stats_df)
+        pitching_stats_df.to_csv(f'mlb/{x}_oakland_athletics_pitching_stats.csv', index=False)
+        print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')  
