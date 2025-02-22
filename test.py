@@ -1,6 +1,23 @@
 # ALL CODE TESTED IN TEST.PY ONLY #
 
+# # 2/22/2025 - IN PROGRESS - CHART CREATION - SUCCESS 
+# import pandas as pd
+# import matplotlib.pyplot as plt
 
+# for year in range(2016,2018):
+#     try:
+#         offensive_stats_df = pd.read_csv(f'mlb/{year}_oakland_athletics_offensive_stats.csv')
+#         color = 'green'
+#         x = offensive_stats_df['Player']
+#         y = offensive_stats_df['RBI']
+#         plt.barh(x, y, color=color)
+#         plt.title(f'Oakland Athletics RBI - {year} Season')
+#         plt.yticks(fontsize=8)
+#         plt.xlabel('Players')
+#         plt.ylabel('RBIs')
+#         plt.show()   
+#     except Exception as e:
+#         print(f'cannot create charts due to wrong year(s) - e - {type(e)}')
 
 # 2/21/2025 - IN PROGRESS - CODE CLEANUP - CODE DOES NOT WORK; WILL NOT BE USED
 # import pandas as pd
