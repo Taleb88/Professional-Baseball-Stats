@@ -1,42 +1,31 @@
-import pandas as pd
-import os
+# ALL CODE TESTED IN TEST.PY ONLY #
 
 
-# 2/21/2025 - IN PROGRESS - CODE CLEANUP
-import pandas as pd
-import time
-import datetime
 
-today = datetime.date.today()
-current_year = today.strftime("%Y")
-current_year = int(current_year) # 1 will be added to the value when the 2025 season begins
+# 2/21/2025 - IN PROGRESS - CODE CLEANUP - CODE DOES NOT WORK; WILL NOT BE USED
+# import pandas as pd
+# import time
+# import datetime
 
+# today = datetime.date.today()
+# current_year = today.strftime("%Y")
+# current_year = int(current_year) # 1 will be added to the value when the 2025 season begins
 
-mlb_teams = ['arizona_diamondbacks','atlanta_braves','baltimore_orioles',
-        'boston_red_sox','chicago_cubs','chicago_white_sox',
-        'cincinnati_reds','cleveland_guardians','colorado_rockies',
-        'detroit_tigers','houston_astros','kansas_city_royals',
-        'los_angeles_angels','los_angeles_dodgers','miami_marlins',
-        'milwaukee_brewers','minnesota_twins','new_york_mets',
-        'new_york_yankees','philadelphia_phillies','pittsburgh_pirates',
-        'san_diego_padres','san_francisco_giants','seattle_mariners',
-        'st_louis_cardinals','tampa_bay_rays','texas_rangers','toronto_blue_jays',
-        'washington_nationals']
+# mlb_teams = ['arizona_diamondbacks','atlanta_braves']
 
-mlb_team_abbrev = ['ARI', 'ATL', 'BAL','BOS','CHC','CHW','CIN','CLE','COL','DET','HOU',
-                   'KCR','LAA','LAD','MIA','MIL','MIN','NYM','NYY','PHI','PIT','SDP','SFG',
-                   'SEA','STL','TBR','TEX','TOR','WSN']
-# mlb stats 2016-present (oakland athletics omitted due to moving out of oakland as of the 2025 season)
-for x in range(2016,current_year):
-    try:
-        for y in mlb_teams:
-            for z in mlb_team_abbrev:
-                mlb_team_stats = pd.read_html(f'https://www.baseball-reference.com/teams/{z}/{x}.shtml')
-                mlb_team_offensive_stats = mlb_team_stats[0]
-                mlb_team_offensive_stats.to_csv(f'mlb/{x}_{y}_offensive_stats.csv', index=False)    
-                time.sleep(20) # timing server requests accordingly to prevent 429 error
-    except Exception as e:
-        print(f'cannot extra data from website:{type(e)}')
+# mlb_team_abbrev = ['ARI', 'ATL']
+# # mlb stats 2023-present (oakland athletics omitted due to moving out of oakland as of the 2025 season)
+# for x in range(2023,current_year):
+#     try:
+#         for y in mlb_team_abbrev:
+#             mlb_team_stats = pd.read_html(f'https://www.baseball-reference.com/teams/{y}/{x}.shtml')
+#             mlb_team_offensive_stats = mlb_team_stats[0]
+#             for z in mlb_teams:
+#                 mlb_team_offensive_stats.to_csv(f'mlb/{x}_{z}_offensive_stats.csv', index=False)    
+#                 time.sleep(10) # timing server requests accordingly to prevent 429 error
+#     except Exception as e:
+#         print(f'cannot extract data from website:{type(e)}')
+
 
 # 2/17/2025 - IN PROGRESS - DELETE UNNECESSARY FILES
 # array = ['minnesota', 'philadelphia']
