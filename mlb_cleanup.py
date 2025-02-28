@@ -61,19 +61,23 @@ for year in range(2016,2025):
         offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
         print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
-        # visualizations
-        offensive_stats_df = pd.read_csv(f'mlb/{year}_oakland_athletics_offensive_stats.csv')
+    except Exception as e:
+        print(f'unable to make proper updates: {type(e)}')
+
+for year in range(2016,2025):
+    try:
+        offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
         color = 'green'
         x = offensive_stats_df['Player']
-        y = offensive_stats_df['RBI'].head(10)
+        y = offensive_stats_df['RBI']
         plt.barh(x, y, color=color)
-        plt.title(f'Oakland Athletics RBI - Top 10 - {year} Season')
+        plt.title(f'Oakland Athletics RBI - {year} Season')
         plt.yticks(fontsize=8)
         plt.xlabel('Players')
         plt.ylabel('RBIs')
         plt.show()   
     except Exception as e:
-        print(f'unable to make proper updates: {type(e)}')
+        print(f'cannot create charts due to wrong year(s) - e - {type(e)}')        
 
 # # pitching stats - WILL NOT BE IN PROJECT FOR NOW
 # for x in range(2016,current_year):
