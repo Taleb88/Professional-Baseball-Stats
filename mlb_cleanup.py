@@ -16,7 +16,7 @@ mlb_teams = ['arizona_diamondbacks','atlanta_braves','baltimore_orioles',
         'san_diego_padres','san_francisco_giants','seattle_mariners',
         'st_louis_cardinals','tampa_bay_rays','texas_rangers','toronto_blue_jays',
         'washington_nationals']
-# # offensive stats
+# offensive stats
 for x in range(2016,current_year):
     try: 
         for y in mlb_teams:
@@ -66,11 +66,11 @@ for x in range(2016,2025):
         print(f'unable to make proper updates: {type(e)}')
 # pitching stats
 for x in range(2016,current_year):
-    try: 
+    try:
         for y in mlb_teams:
             pitching_stats_df = pd.read_csv(f'mlb/{x}_{y}_pitching_stats.csv')
             print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
-            # filtering out irrevalent values in Player column from all dataframes
+            #filtering out irrevalent values in Player column from all dataframes
             def player_column(df):
                 try: 
                     return df[(df['Player'] != 'Player') & 
@@ -79,12 +79,13 @@ for x in range(2016,current_year):
                     print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
 
             pitching_stats_df = player_column(pitching_stats_df)
+            print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
             pitching_stats_df.to_csv(f'mlb_cleanup/{x}_{y}_pitching_stats.csv', index=False)
-            pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
-            pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
-            pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
-            pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
-            pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
+            # pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
+            # pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
+            # pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
+            # pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
+            # pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
             print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
             pitching_stats_df.to_csv(f'mlb_cleanup/{x}_{y}_pitching_stats.csv', index=False)
     except Exception as e:
@@ -103,12 +104,13 @@ for x in range(2016,2025):
                 print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
        
         pitching_stats_df = player_column(pitching_stats_df)
+        print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)
         pitching_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_pitching_stats.csv', index=False)
-        pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
-        pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
-        pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
-        pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
-        pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
+        # pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
+        # pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
+        # pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
+        # pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
+        # pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
         print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)      
         pitching_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_pitching_stats.csv', index=False)  
     except Exception as e:
