@@ -1,6 +1,11 @@
 # ALL CODE TESTED IN TEST.PY ONLY #
 
+# 2/28/2025 - IN PROGRESS
+import pandas as pd
 
+minnesota_twins_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/MIN/2016.shtml')
+minnesota_twins_pitching_stats_df = minnesota_twins_stats_df[2]
+print(minnesota_twins_pitching_stats_df)
 
 
 # # 2/22/2025 - IN PROGRESS - CHART CREATION - SUCCESS 

@@ -23,7 +23,7 @@ for x in range(2016,current_year):
             offensive_stats_df = pd.read_csv(f'mlb/{x}_{y}_offensive_stats.csv')
             print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
             # filtering out irrevalent values in Player column from all dataframes
-            def player_column(df):
+            def hitter_column(df):
                 try: 
                     return df[(df['Player'] != 'Player') & 
                               (df['Player'] != 'Team Totals') & 
@@ -32,7 +32,7 @@ for x in range(2016,current_year):
                 except Exception as e:
                     print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
 
-            offensive_stats_df = player_column(offensive_stats_df)
+            offensive_stats_df = hitter_column(offensive_stats_df)
             offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
             offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
             offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
@@ -46,7 +46,7 @@ for x in range(2016,2025):
         offensive_stats_df = pd.read_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv')
         print(f'\n{x}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
         # filtering out irrevalent values in Player column from all dataframes                
-        def player_column(df):
+        def oakland_athletics_hitter_column(df):
             try: 
                 return df[(df['Player'] != 'Player') & 
                           (df['Player'] != 'Team Totals') & 
@@ -55,7 +55,7 @@ for x in range(2016,2025):
             except Exception as e:
                 print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
        
-        offensive_stats_df = player_column(offensive_stats_df)
+        offensive_stats_df = oakland_athletics_hitter_column(offensive_stats_df)
         offensive_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_offensive_stats.csv', index=False)
         offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
         offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
@@ -64,54 +64,54 @@ for x in range(2016,2025):
         print(f'\n{x}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
-# pitching stats
-for x in range(2016,current_year):
-    try:
-        for y in mlb_teams:
-            pitching_stats_df = pd.read_csv(f'mlb/{x}_{y}_pitching_stats.csv')
-            print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
-            #filtering out irrevalent values in Player column from all dataframes
-            def player_column(df):
-                try: 
-                    return df[(df['Player'] != 'Player') & 
-                              (df['Player'] != 'Team Totals')]
-                except Exception as e:
-                    print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
+# # pitching stats - WILL NOT BE IN PROJECT FOR NOW
+# for x in range(2016,current_year):
+#     try:
+#         for y in mlb_teams:
+#             pitching_stats_df = pd.read_csv(f'mlb/{x}_{y}_pitching_stats.csv')
+#             print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
+#             #filtering out irrevalent values in Player column from all dataframes
+#             def player_column(df):
+#                 try: 
+#                     return df[(df['Player'] != 'Player') & 
+#                               (df['Player'] != 'Team Totals')]
+#                 except Exception as e:
+#                     print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
 
-            pitching_stats_df = player_column(pitching_stats_df)
-            print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
-            pitching_stats_df.to_csv(f'mlb_cleanup/{x}_{y}_pitching_stats.csv', index=False)
-            # pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
-            # pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
-            # pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
-            # pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
-            # pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
-            print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
-            pitching_stats_df.to_csv(f'mlb_cleanup/{x}_{y}_pitching_stats.csv', index=False)
-    except Exception as e:
-        print(f'unable to make proper updates: {type(e)}')
-# oakland athletics only - pitching stats
-for x in range(2016,2025):
-    try: 
-        pitching_stats_df = pd.read_csv(f'mlb/{x}_oakland_athletics_pitching_stats.csv')
-        print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)
-        # filtering out irrevalent values in Player column from all dataframes                
-        def player_column(df):
-            try: 
-                return df[(df['Player'] != 'Player') & 
-                          (df['Player'] != 'Team Totals')]
-            except Exception as e:
-                print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
+#             pitching_stats_df = player_column(pitching_stats_df)
+#             print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
+#             pitching_stats_df.to_csv(f'mlb_cleanup/{x}_{y}_pitching_stats.csv', index=False)
+#             pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
+#             pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
+#             pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
+#             pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
+#             pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
+#             print(f'\n{x}_{y}_pitching_stats_df:\n',pitching_stats_df)
+#             pitching_stats_df.to_csv(f'mlb_cleanup/{x}_{y}_pitching_stats.csv', index=False)
+#     except Exception as e:
+#         print(f'unable to make proper updates: {type(e)}')
+# # oakland athletics only - pitching stats
+# for x in range(2016,2025):
+#     try: 
+#         pitching_stats_df = pd.read_csv(f'mlb/{x}_oakland_athletics_pitching_stats.csv')
+#         print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)
+#         # filtering out irrevalent values in Player column from all dataframes                
+#         def player_column(df):
+#             try: 
+#                 return df[(df['Player'] != 'Player') & 
+#                           (df['Player'] != 'Team Totals')]
+#             except Exception as e:
+#                 print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
        
-        pitching_stats_df = player_column(pitching_stats_df)
-        print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)
-        pitching_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_pitching_stats.csv', index=False)
-        # pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
-        # pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
-        # pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
-        # pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
-        # pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
-        print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)      
-        pitching_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_pitching_stats.csv', index=False)  
-    except Exception as e:
-        print(f'unable to make proper updates: {type(e)}')  
+#         pitching_stats_df = player_column(pitching_stats_df)
+#         print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)
+#         pitching_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_pitching_stats.csv', index=False)
+#         pitching_stats_df = pitching_stats_df.sort_values(by=['W'], ascending=False).drop('Rk', axis=1).fillna(0)
+#         pitching_stats_df[['W-L%','WHIP']] = pitching_stats_df[['W-L%','WHIP']].astype(float).replace(0, 0.000)    
+#         pitching_stats_df[['ERA','FIP','SO/BB']] = pitching_stats_df[['ERA','FIP','SO/BB']].astype(float).replace(0, 0.00)
+#         pitching_stats_df[['H9','HR9','BB9','SO9']] = pitching_stats_df[['H9','HR9','BB9','SO9']].astype(float).replace(0, 0.0) 
+#         pitching_stats_df['Player'] = pitching_stats_df['Player'].replace(0, 'RP')
+#         print(f'\n{x}_oakland_athletics_pitching_stats_df:\n',pitching_stats_df)      
+#         pitching_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_pitching_stats.csv', index=False)  
+#     except Exception as e:
+#         print(f'unable to make proper updates: {type(e)}')  
