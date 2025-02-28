@@ -127,6 +127,16 @@ for x in range(2016,current_year):
         time.sleep(20) # timing server requests accordingly to prevent 429 error 
     except Exception as e:
         print(f'cannot extract data from website:{type(e)}')
+# oakland athletics 2016-2024 team offensive stats
+for x in range(2016,2025):
+    try: 
+        oakland_athletics_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/OAK/{x}.shtml')
+        oakland_athletics_offensive_stats = oakland_athletics_stats_df[0]
+        oakland_athletics_offensive_stats.to_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv', index=False)
+        time.sleep(20) # timing server requests accordingly to prevent 429 error 
+    except Exception as e:
+        print(f'cannot extract data from website:{type(e)}')
+
 
 # # mlb pitching stats per team 2016-present (oakland athletics omitted due to moving out of oakland as of the 2025 season)
 # for x in range(2016,current_year):
@@ -249,17 +259,6 @@ for x in range(2016,current_year):
 #         time.sleep(20) # timing server requests accordingly to prevent 429 error 
 #     except Exception as e:
 #         print(f'cannot extract data from website:{type(e)}')
-
-# oakland athletics 2016-2024 team offensive stats
-for x in range(2016,2025):
-    try: 
-        oakland_athletics_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/OAK/{x}.shtml')
-        oakland_athletics_offensive_stats = oakland_athletics_stats_df[0]
-        oakland_athletics_offensive_stats.to_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv', index=False)
-        time.sleep(20) # timing server requests accordingly to prevent 429 error 
-    except Exception as e:
-        print(f'cannot extract data from website:{type(e)}')
-
 # # oakland athletics 2016-2024 team pitching stats
 # for x in range(2016,2025):
 #     try: 
@@ -269,4 +268,3 @@ for x in range(2016,2025):
 #         time.sleep(20) # timing server requests accordingly to prevent 429 error 
 #     except Exception as e:
 #         print(f'cannot extract data from website:{type(e)}')      
-        

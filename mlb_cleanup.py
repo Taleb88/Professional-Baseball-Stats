@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import datetime
 
 today = datetime.date.today()
@@ -17,11 +18,11 @@ mlb_teams = ['arizona_diamondbacks','atlanta_braves','baltimore_orioles',
         'st_louis_cardinals','tampa_bay_rays','texas_rangers','toronto_blue_jays',
         'washington_nationals']
 # offensive stats
-for x in range(2016,current_year):
+for year in range(2016,current_year):
     try: 
-        for y in mlb_teams:
-            offensive_stats_df = pd.read_csv(f'mlb/{x}_{y}_offensive_stats.csv')
-            print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
+        for mlb_team in mlb_teams:
+            offensive_stats_df = pd.read_csv(f'mlb/{year}_{mlb_team}_offensive_stats.csv')
+            # print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
             # filtering out irrevalent values in Player column from all dataframes
             def hitter_column(df):
                 try: 
@@ -31,20 +32,19 @@ for x in range(2016,current_year):
                               (df['Player'] != 'Pitcher Totals')]
                 except Exception as e:
                     print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
-
             offensive_stats_df = hitter_column(offensive_stats_df)
             offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
             offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
             offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
-            offensive_stats_df.to_csv(f'mlb_cleanup/{x}_{y}_offensive_stats.csv', index=False)
-            print(f'\n{x}_{y}_offensive_stats_df:\n',offensive_stats_df)
+            offensive_stats_df.to_csv(f'mlb_cleanup/{year}_{mlb_team}_offensive_stats.csv', index=False)
+            print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
 # oakland athletics only - offensive stats
-for x in range(2016,2025):
+for year in range(2016,2025):
     try: 
-        offensive_stats_df = pd.read_csv(f'mlb/{x}_oakland_athletics_offensive_stats.csv')
-        print(f'\n{x}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
+        offensive_stats_df = pd.read_csv(f'mlb/{year}_oakland_athletics_offensive_stats.csv')
+        # print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
         # filtering out irrevalent values in Player column from all dataframes                
         def oakland_athletics_hitter_column(df):
             try: 
@@ -53,17 +53,28 @@ for x in range(2016,2025):
                           (df['Player'] != 'Non-Pitcher Totals') & 
                           (df['Player'] != 'Pitcher Totals')]
             except Exception as e:
-                print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
-       
+                print(f'cannot filter rows of dataframe accordingly: {type(e)}')               
         offensive_stats_df = oakland_athletics_hitter_column(offensive_stats_df)
-        offensive_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_offensive_stats.csv', index=False)
+        offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
         offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
         offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
         offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
-        offensive_stats_df.to_csv(f'mlb_cleanup/{x}_oakland_athletics_offensive_stats.csv', index=False)
-        print(f'\n{x}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
+        offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
+        print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
+        # visualizations
+        offensive_stats_df = pd.read_csv(f'mlb/{year}_oakland_athletics_offensive_stats.csv')
+        color = 'green'
+        x = offensive_stats_df['Player']
+        y = offensive_stats_df['RBI'].head(10)
+        plt.barh(x, y, color=color)
+        plt.title(f'Oakland Athletics RBI - Top 10 - {year} Season')
+        plt.yticks(fontsize=8)
+        plt.xlabel('Players')
+        plt.ylabel('RBIs')
+        plt.show()   
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
+
 # # pitching stats - WILL NOT BE IN PROJECT FOR NOW
 # for x in range(2016,current_year):
 #     try:

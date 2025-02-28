@@ -2,11 +2,11 @@
 
 
 
-# # 2/28/2025 - IN PROGRESS - COMPLETE - WILL NOT BE USED; LOGIC IS CORRECT, ISSUES WITH WEBSITE WHEN PULLING DATA FROM TABLE(S)
+# # 2/28/2025 - IN PROGRESS - COMPLETE - WILL NOT BE USED; LOGIC IS CORRECT; ISSUES WITH WEBSITE WHEN PULLING DATA FROM TABLE(S)
 # import pandas as pd
 
 # minnesota_twins_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/MIN/2016.shtml')
-# minnesota_twins_pitching_stats_df = minnesota_twins_stats_df[2]
+# minnesota_twins_pitching_stats_df = minnesota_twins_stats_df[1]
 # print(minnesota_twins_pitching_stats_df)
 
 
