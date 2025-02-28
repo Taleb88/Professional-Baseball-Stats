@@ -63,7 +63,7 @@ for year in range(2016,2025):
         print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
-
+# visualizations
 for year in range(2016,2025):
     try:
         offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
