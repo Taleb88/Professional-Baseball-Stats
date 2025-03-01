@@ -71,7 +71,7 @@ for year in range(2016,2025):
         plt.yticks(fontsize=9)
         plt.xlabel('RBIs')
         plt.ylabel('Players')
-        plt.gca().invert_yaxis()       
+        plt.gca().invert_yaxis() # displaying highest RBI value first       
         plt.show()   
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
