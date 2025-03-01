@@ -72,9 +72,10 @@ for year in range(2016,2025):
         y = offensive_stats_df['RBI']
         plt.barh(x, y, color=color)
         plt.title(f'Oakland Athletics RBI - {year} Season')
-        plt.yticks(fontsize=8)
-        plt.xlabel('Players')
-        plt.ylabel('RBIs')
+        plt.yticks(fontsize=9)
+        plt.xlabel('RBIs')
+        plt.ylabel('Players')
+        plt.gca().invert_yaxis()       
         plt.show()   
     except Exception as e:
         print(f'cannot create charts due to wrong year(s) - e - {type(e)}')        
