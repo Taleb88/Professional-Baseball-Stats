@@ -46,7 +46,13 @@ for year in range(2016,current_year):
                 else:
                     return 'Right'
             offensive_stats_df['Bats'] = offensive_stats_df.apply(lambda x: bats(x['Player']),axis='columns')
-            print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)
+            # print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)
+            offensive_stats_df.to_csv(f'mlb_cleanup/{year}_{mlb_team}_offensive_stats.csv', index=False)
+            # confirming whether BA is under Mendoza Line in new 'Under Mendoza Line?' column based on criteria
+            offensive_stats_df['Under Mendoza Line?'] = len(offensive_stats_df) * ['No']
+            offensive_stats_df.loc[(offensive_stats_df['BA'] < 0.200) & (offensive_stats_df['PA'] == 502), 'Under Mendoza Line?'] = 'Yes'
+            offensive_stats_df.to_csv(f'mlb_cleanup/{year}_{mlb_team}_offensive_stats.csv', index=False)
+            print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)               
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
 # oakland athletics only - offensive stats
@@ -79,7 +85,13 @@ for year in range(2016,2025):
             else:
                 return 'Right'
         offensive_stats_df['Bats'] = offensive_stats_df.apply(lambda x: bats(x['Player']),axis='columns')
-        print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)            
+        # print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
+        offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
+        # confirming whether BA is under Mendoza Line in new 'Under Mendoza Line?' column
+        offensive_stats_df['Under Mendoza Line?'] = len(offensive_stats_df) * ['No']
+        offensive_stats_df.loc[(offensive_stats_df['BA'] < 0.200) & (offensive_stats_df['PA'] == 502), 'Under Mendoza Line?'] = 'Yes'
+        offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
+        print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)       
         # visualizations
         offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
         color = 'green'

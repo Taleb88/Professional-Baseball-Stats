@@ -2,6 +2,20 @@
 
 
 # 3/2/2025 - IN PROGRESS - COMPLETE - SUCCESS
+import pandas as pd
+
+df = pd.read_csv('mlb_cleanup/2024_oakland_athletics_offensive_stats.csv')
+print(df)
+
+cols_list = list(df.columns)
+index = 0
+
+for col in cols_list:
+    print(index,col)
+    index += 1
+
+
+# 3/2/2025 - IN PROGRESS - COMPLETE - SUCCESS
 # import pandas as pd
 
 # data = { 'name':['Taleb'] }
@@ -18,6 +32,7 @@
 # df['bats'] = df.apply(lambda x: bats(x['name']), axis='columns')    
 
 # print('updated:\n',df)
+
 
 # # 2/28/2025 - IN PROGRESS - COMPLETE - WILL NOT BE USED; LOGIC IS CORRECT; ISSUES WITH WEBSITE WHEN PULLING DATA FROM TABLE(S)
 # import pandas as pd
