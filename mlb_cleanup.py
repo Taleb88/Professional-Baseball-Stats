@@ -75,6 +75,8 @@ for year in range(2016,2025):
         offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
         offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
+        # 20/20, 30/30, 40/40, 50/50, and 30/70 clubs based off on HR and SB in same season - new columns
+                
         print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
         # adding new Bats column in all dataframes
         def bats(x):
@@ -91,6 +93,8 @@ for year in range(2016,2025):
         offensive_stats_df['Under Mendoza Line?'] = len(offensive_stats_df) * ['No']
         offensive_stats_df.loc[(offensive_stats_df['BA'] < 0.200) & (offensive_stats_df['PA'] >= 502), 'Under Mendoza Line?'] = 'Yes'
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
+        # 20/20, 30/30, 40/40, 50/50, and 30/70 clubs based off on HR and SB in same season - new columns
+
         print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
         # visualizations
         offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
