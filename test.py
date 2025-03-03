@@ -1,6 +1,22 @@
 # ALL CODE TESTED IN TEST.PY ONLY #
 
+# 3/2/2025 - IN PROGRESS - COMPLETE - SUCCESS
+import pandas as pd
 
+data = { 'name':['Taleb'] }
+
+df = pd.DataFrame(data)
+print(df)
+
+def bats(x):
+    if '#' in x:
+        return 'L'
+    else:
+        return 'R'
+
+df['bats'] = df.apply(lambda x: bats(x['name']), axis='columns')    
+
+print('updated:\n',df)
 
 # # 2/28/2025 - IN PROGRESS - COMPLETE - WILL NOT BE USED; LOGIC IS CORRECT; ISSUES WITH WEBSITE WHEN PULLING DATA FROM TABLE(S)
 # import pandas as pd

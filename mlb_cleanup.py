@@ -37,7 +37,7 @@ for year in range(2016,current_year):
             offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
             offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
             offensive_stats_df.to_csv(f'mlb_cleanup/{year}_{mlb_team}_offensive_stats.csv', index=False)
-            print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)
+
     except Exception as e:
         print(f'unable to make proper updates: {type(e)}')
 # oakland athletics only - offensive stats
