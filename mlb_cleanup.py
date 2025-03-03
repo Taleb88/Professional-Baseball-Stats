@@ -33,7 +33,7 @@ for year in range(2016,current_year):
                 except Exception as e:
                     print(f'cannot filter rows of dataframe accordingly: {type(e)}')        
             offensive_stats_df = hitter_column(offensive_stats_df)
-            offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
+            offensive_stats_df[['RBI','PA']] = offensive_stats_df[['RBI','PA']].astype(int)
             offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
             offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
             offensive_stats_df.to_csv(f'mlb_cleanup/{year}_{mlb_team}_offensive_stats.csv', index=False)
@@ -50,7 +50,6 @@ for year in range(2016,current_year):
             offensive_stats_df.to_csv(f'mlb_cleanup/{year}_{mlb_team}_offensive_stats.csv', index=False)
             # confirming whether BA is under Mendoza Line in new 'Under Mendoza Line?' column based on criteria
             offensive_stats_df['Under Mendoza Line?'] = len(offensive_stats_df) * ['No']
-            offensive_stats_df['PA'] = offensive_stats_df['PA'].astype(int)
             offensive_stats_df.loc[(offensive_stats_df['BA'] < 0.200) & (offensive_stats_df['PA'] >= 502), 'Under Mendoza Line?'] = 'Yes'
             offensive_stats_df.to_csv(f'mlb_cleanup/{year}_{mlb_team}_offensive_stats.csv', index=False)
             print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)               
@@ -72,7 +71,7 @@ for year in range(2016,2025):
                 print(f'cannot filter rows of dataframe accordingly: {type(e)}')               
         offensive_stats_df = oakland_athletics_hitter_column(offensive_stats_df)
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
-        offensive_stats_df['RBI'] = offensive_stats_df['RBI'].astype(int)
+        offensive_stats_df[['RBI','PA']] = offensive_stats_df[['RBI','PA']].astype(int)
         offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
         offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
@@ -90,10 +89,9 @@ for year in range(2016,2025):
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
         # confirming whether BA is under Mendoza Line in new 'Under Mendoza Line?' column
         offensive_stats_df['Under Mendoza Line?'] = len(offensive_stats_df) * ['No']
-        offensive_stats_df['PA'] = offensive_stats_df['PA'].astype(int)
         offensive_stats_df.loc[(offensive_stats_df['BA'] < 0.200) & (offensive_stats_df['PA'] >= 502), 'Under Mendoza Line?'] = 'Yes'
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
-        print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df) 
+        print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
         # visualizations
         offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
         color = 'green'

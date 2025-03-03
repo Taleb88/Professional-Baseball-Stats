@@ -1,19 +1,17 @@
 # ALL CODE TESTED IN TEST.PY ONLY #
 
 
-# 3/2/2025 - IN PROGRESS - COMPLETE - SUCCESS
-import pandas as pd
+# import pandas as pd
 
-df = pd.read_csv('mlb_cleanup/2024_oakland_athletics_offensive_stats.csv')
-print(df)
+# df = pd.read_csv('mlb_cleanup/2024_oakland_athletics_offensive_stats.csv')
+# print(df)
 
-cols_list = list(df.columns)
-index = 0
+# cols_list = list(df.columns)
+# index = 0
 
-for col in cols_list:
-    print(index,col)
-    index += 1
-
+# for col in cols_list:
+#     print(index,col)
+#     index += 1
 
 # 3/2/2025 - IN PROGRESS - COMPLETE - SUCCESS
 # import pandas as pd
