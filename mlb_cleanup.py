@@ -85,7 +85,7 @@ for year in range(2016,2025):
                 print(f'cannot filter rows of dataframe accordingly: {type(e)}')               
         offensive_stats_df = oakland_athletics_hitter_column(offensive_stats_df)
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
-        offensive_stats_df[['RBI','PA','HR','SB']] = offensive_stats_df[['RBI','PA','HR',]].astype(int)
+        offensive_stats_df[['RBI','PA','HR','SB']] = offensive_stats_df[['RBI','PA','HR','SB']].astype(int)
         offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
         offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)                
@@ -105,7 +105,7 @@ for year in range(2016,2025):
         offensive_stats_df['Under Mendoza Line?'] = len(offensive_stats_df) * ['No']
         offensive_stats_df.loc[(offensive_stats_df['BA'] < 0.200) & (offensive_stats_df['PA'] >= 502), 'Under Mendoza Line?'] = 'Yes'
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
-        # 20/20, 30/30, 40/40, 50/50, 60/60, and 40/70 clubs based off on HR and SB in same season - new columns
+        # 20/20, 30/30, 40/40, 50/50, 60/60, and 40/70 clubs based off on HR and SB in same season - columns created
         offensive_stats_df['20/20 Club'] = len(offensive_stats_df) * ['No']
         offensive_stats_df['30/30 Club'] = len(offensive_stats_df) * ['No'] 
         offensive_stats_df['40/40 Club'] = len(offensive_stats_df) * ['No'] 
