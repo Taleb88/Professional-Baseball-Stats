@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
+import glob
+import os
 
 today = datetime.date.today()
 current_year = today.strftime("%Y")
@@ -127,7 +129,15 @@ for year in range(2016,2025):
         offensive_stats_df.loc[(offensive_stats_df['HR'] >= 30) & (offensive_stats_df['SB'] >= 70), '30/70 Club'] = 'Yes'
         offensive_stats_df.loc[(offensive_stats_df['HR'] >= 40) & (offensive_stats_df['SB'] >= 70), '40/70 Club'] = 'Yes'                      
         print(f'\n{year}_oakland_athletics_offensive_stats_df:\n',offensive_stats_df)
-        offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)    
+        offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
+        # players with at least 100 RBIs
+        players_with_at_least_100_rbis = offensive_stats_df.loc[offensive_stats_df['RBI'] >= 100]
+        print(f'\n{year}_oakland_athletics_players_with_at_least_100_rbis_df:\n',players_with_at_least_100_rbis)
+        players_with_at_least_100_rbis.to_csv(f'mlb_cleanup/{year}_oakland_athletics_players_with_at_least_100_rbis.csv', index=False)
+        # merge all files - players with at least 100 RBIs
+        players_with_at_least_100_rbis = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_players_with_at_least_100_rbis.csv')
+        players_with_at_least_100_rbis = players_with_at_least_100_rbis.merge(players_with_at_least_100_rbis, on=['Player'], how='outer')
+        print(players_with_at_least_100_rbis)
         # visualizations
         offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
         color = 'green'
