@@ -1,8 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import datetime
-import glob
-import os
 
 today = datetime.date.today()
 current_year = today.strftime("%Y")
@@ -133,7 +131,6 @@ for year in range(2016,2025):
         # players with at least 100 RBIs
         players_with_at_least_100_rbis = offensive_stats_df.loc[offensive_stats_df['RBI'] >= 100]
         print(f'\n{year}_oakland_athletics_players_with_at_least_100_rbis_df:\n',players_with_at_least_100_rbis)
-        #players_with_at_least_100_rbis.to_csv(f'mlb_cleanup/{year}_oakland_athletics_players_with_at_least_100_rbis.csv', index=False)
         # visualizations
         offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
         color = 'green'
