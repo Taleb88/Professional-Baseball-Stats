@@ -4,7 +4,7 @@ import datetime
 
 today = datetime.date.today()
 current_year = today.strftime("%Y")
-current_year = int(current_year) + 1 # 1 added to the value when the 2025 season began
+current_year = int(current_year)
 
 # data cleanup per team per year (2016-present)
 mlb_teams = ['arizona_diamondbacks','atlanta_braves','baltimore_orioles',

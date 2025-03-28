@@ -4,7 +4,7 @@ import datetime
 
 today = datetime.date.today()
 current_year = today.strftime("%Y")
-current_year = int(current_year) + 1 # 1 added to the value when the 2025 season began
+current_year = int(current_year)
 
 # mlb offensive stats per team 2016-present (oakland athletics omitted due to moving out of oakland as of the 2025 season)
 for x in range(2016,current_year):
