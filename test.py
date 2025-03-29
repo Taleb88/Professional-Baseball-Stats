@@ -3,6 +3,8 @@
 # 3-28-2025 - TESTING - IN PROGRESS
 import pandas as pd
 
+df = pd.read_html('')
+
 # import pandas as pd
 
 # df = pd.read_csv('mlb_cleanup/2024_oakland_athletics_offensive_stats.csv')
@@ -15,7 +17,7 @@ import pandas as pd
 #     print(index,col)
 #     index += 1
 
-# 3/2/2025 - IN PROGRESS - COMPLETE - SUCCESS
+# 3/2/2025 - COMPLETE - SUCCESS
 # import pandas as pd
 
 # data = { 'name':['Taleb'] }
@@ -34,7 +36,7 @@ import pandas as pd
 # print('updated:\n',df)
 
 
-# # 2/28/2025 - IN PROGRESS - COMPLETE - WILL NOT BE USED; LOGIC IS CORRECT; ISSUES WITH WEBSITE WHEN PULLING DATA FROM TABLE(S)
+# # 2/28/2025 - COMPLETE - WILL NOT BE USED; LOGIC IS CORRECT; ISSUES WITH WEBSITE WHEN PULLING DATA FROM TABLE(S)
 # import pandas as pd
 
 # minnesota_twins_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/MIN/2016.shtml')
@@ -42,7 +44,7 @@ import pandas as pd
 # print(minnesota_twins_pitching_stats_df)
 
 
-# # 2/22/2025 - IN PROGRESS - CHART CREATION - SUCCESS 
+# # 2/22/2025 - COMPLETE - CHART CREATION - SUCCESS 
 # import pandas as pd
 # import matplotlib.pyplot as plt
 
@@ -62,7 +64,7 @@ import pandas as pd
 #         print(f'cannot create charts due to wrong year(s) - e - {type(e)}')
 
 
-# 2/21/2025 - IN PROGRESS - CODE CLEANUP - CODE DOES NOT WORK; WILL NOT BE USED
+# 2/21/2025 - COMPLETE - CODE CLEANUP - CODE DOES NOT WORK; WILL NOT BE USED
 # import pandas as pd
 # import time
 # import datetime
@@ -87,7 +89,7 @@ import pandas as pd
 #         print(f'cannot extract data from website:{type(e)}')
 
 
-# 2/17/2025 - IN PROGRESS - DELETE UNNECESSARY FILES
+# 2/17/2025 - COMPLETE - DELETE UNNECESSARY FILES
 # array = ['minnesota', 'philadelphia']
 # for x in range(2016,2025):
 #     for y in array:
@@ -157,7 +159,7 @@ import pandas as pd
 
 
 
-# 2/16/2025 - IN PROGRESS - SUCCESS
+# 2/16/2025 - COMPLETE - SUCCESS
 # new_york_yankees_offensive_stats_df = pd.read_csv('mlb/2016_new_york_yankees_offensive_stats.csv')
 
 # print('\nnew_york_yankees_offensive_stats_df:\n',new_york_yankees_offensive_stats_df)
