@@ -1,12 +1,13 @@
 # ALL CODE TESTED IN TEST.PY ONLY #
 
-# 3-28-2025 - TESTING - IN PROGRESS
-import pandas as pd
 
-df = pd.read_html('https://www.baseball-reference.com/teams/KCM/1924.shtml')
-df_offensive_stats = df[0]
+# 3-28-2025 - TESTING - COMPLETE - SUCCESS
+# import pandas as pd
 
-print(df_offensive_stats)
+# df = pd.read_html('https://www.baseball-reference.com/teams/KCM/1924.shtml')
+# df_offensive_stats = df[0]
+
+# print(df_offensive_stats)
 
 # import pandas as pd
 
