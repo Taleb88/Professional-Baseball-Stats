@@ -8,7 +8,7 @@ for year in range(1924,1949):
             try:
                 overall_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/{team_name}/{year}.shtml')
                 offensive_stats_df = overall_stats_df[0]
-                time.sleep(20)  
+                time.sleep(15)  
                 if 'KCM' in franchise:
                     offensive_stats_df.to_csv(f'negro_leagues/{year}_kansas_city_monarchs_offensive_stats.csv',index=False)
                 if 'CAG' in franchise:
