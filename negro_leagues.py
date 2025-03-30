@@ -1,7 +1,7 @@
 import pandas as pd
 import time
 
-# kansas city monarchs - 1924-1930 and 1937-1948 seasons only available via baseball-reference.com
+# kansas city monarchs - 1924-1931 and 1937-1948 seasons only available via baseball-reference.com
 for year in range(1924,1949):
     try: 
         kansas_city_monarchs_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/KCM/{year}.shtml')
