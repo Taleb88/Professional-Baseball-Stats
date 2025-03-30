@@ -1,19 +1,27 @@
 import pandas as pd
 import time
 
-franchise = ['KCM','CAG','BBB','MRS','DS','SLS','CSW','ABC','CBN']
 for year in range(1924,1949):
     try: 
-        for team_name in franchise:
-            try:
-                overall_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/{team_name}/{year}.shtml')
-                offensive_stats_df = overall_stats_df[0]
-                time.sleep(15)  
-                if 'KCM' in franchise:
-                    offensive_stats_df.to_csv(f'negro_leagues/{year}_kansas_city_monarchs_offensive_stats.csv',index=False)
-                if 'CAG' in franchise:
-                    offensive_stats_df.to_csv(f'negro_leagues/{year}_chicago_american_giants_offensive_stats.csv',index=False)
-            except Exception as e:
-                print(f'offensive stats data for {team_name} does not exist for the {year} Season - {type(e)}')       
+        kansas_city_monarchs_overall_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/KCM/{year}.shtml')
+        kansas_city_monarchs_offensive_stats_df = kansas_city_monarchs_overall_stats_df[0]
+        kansas_city_monarchs_offensive_stats_df.to_csv(f'negro_leagues/{year}_kansas_city_monarchs_offensive_stats.csv',index=False)
+        time.sleep(20) 
+        chicago_american_giants_overall_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/CAG/{year}.shtml')
+        chicago_american_giants_offensive_stats_df = chicago_american_giants_overall_stats_df[0]
+        chicago_american_giants_offensive_stats_df.to_csv(f'negro_leagues/{year}_chicago_american_giants_offensive_stats.csv',index=False)
+        time.sleep(20)
+        birmingham_black_barons_overall_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/BBB/{year}.shtml')
+        birmingham_black_barons_offensive_stats_df = birmingham_black_barons_overall_stats_df[0]
+        birmingham_black_barons_offensive_stats_df.to_csv(f'negro_leagues/{year}_birmingham_black_barons_offensive_stats.csv',index=False)
+        time.sleep(20)
+        memphis_red_sox_overall_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/MRS/{year}.shtml')
+        memphis_red_sox_offensive_stats_df = memphis_red_sox_overall_stats_df[0]
+        memphis_red_sox_offensive_stats_df.to_csv(f'negro_leagues/{year}_memphis_red_sox_offensive_stats.csv',index=False)
+        time.sleep(20)
+        detroit_stars_overall_stats_df = pd.read_html(f'https://www.baseball-reference.com/teams/DS/{year}.shtml')
+        detroit_stars_offensive_stats_df = detroit_stars_overall_stats_df[0]
+        detroit_stars_offensive_stats_df.to_csv(f'negro_leagues/{year}_detroit_stars_offensive_stats.csv',index=False)
+        time.sleep(20)                   
     except Exception as e:
-        print(f'cannot filter rows accordingly - {type(e)}')    
+        print(f'data for certain seasons is not available at this time for certain teams - {type(e)}')    
