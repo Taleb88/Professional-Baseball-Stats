@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 teams = [] # abbrevations per team to be filled in
 
