@@ -21,7 +21,7 @@ for team in teams:
                 offensive_stats_df = hitter_column(offensive_stats_df)
                 offensive_stats_df[['RBI','PA','HR','SB']] = offensive_stats_df[['RBI','PA','HR','SB']].astype(int)
                 offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1)
-                offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
+                offensive_stats_df[['BA','OBP','SLG','OPS','rOBA','OPS+','Rbat+']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA','OPS+','Rbat+']].astype(float).replace(0, 0.000).fillna(0)
                 offensive_stats_df = offensive_stats_df.drop(['Pos.1','Awards'],axis=1)
                 print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
                 offensive_stats_df.to_csv(f'negro_leagues_cleanup/{year}_{team}_offensive_stats.csv',index=False)
