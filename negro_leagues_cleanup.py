@@ -8,7 +8,7 @@ for team in teams:
         for year in range(1924,1949):
             try:
                 offensive_stats_df = pd.read_csv(f'negro_leagues/{year}_{team}_offensive_stats.csv')
-                print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
+                #print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
                 # filtering out irrevalent values in Player column from all dataframes
                 # def hitter_column(df):
                 #     try: 
@@ -22,8 +22,8 @@ for team in teams:
                 # offensive_stats_df[['RBI','PA','HR','SB']] = offensive_stats_df[['RBI','PA','HR','SB']].astype(int)
                 # offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1).fillna(0)
                 # offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA']].astype(float).replace(0, 0.000)
-                # offensive_stats_df.to_csv(f'negro_leagues_cleanup/{year}_{team}_offensive_stats.csv')
+                offensive_stats_df.to_csv(f'negro_leagues_cleanup/{year}_{team}_offensive_stats.csv',index=False)
             except Exception as e:
-                print(f'cannot clean csv(s) - {type(e)}')
+                print(f'cannot certain clean csv(s) due to data not available for certain years/seasons - {type(e)}')
     except Exception as e:
         print(f'unable to find team(s) - {type(e)}')    
