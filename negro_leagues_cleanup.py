@@ -8,8 +8,8 @@ for team in teams:
         for year in range(1924,1949):
             try:
                 offensive_stats_df = pd.read_csv(f'negro_leagues/{year}_{team}_offensive_stats.csv')
-                #print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
-                # filtering out irrevalent values in Player column from all dataframes
+                # print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
+                # filtering out irrelavent values in Player column from all dataframes
                 # def hitter_column(df):
                 #     try: 
                 #         return df[(df['Player'] != 'Player') & 

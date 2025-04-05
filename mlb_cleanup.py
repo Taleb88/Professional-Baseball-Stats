@@ -23,7 +23,7 @@ for year in range(2016,current_year):
         for mlb_team in mlb_teams:
             offensive_stats_df = pd.read_csv(f'mlb/{year}_{mlb_team}_offensive_stats.csv')
             # print(f'\n{year}_{mlb_team}_offensive_stats_df:\n',offensive_stats_df)
-            # filtering out irrevalent values in Player column from all dataframes
+            # filtering out irrelevant values in Player column from all dataframes
             def hitter_column(df):
                 try: 
                     return df[(df['Player'] != 'Player') & 
