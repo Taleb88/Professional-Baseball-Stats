@@ -130,7 +130,7 @@ for year in range(2016,2025):
         offensive_stats_df.to_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv', index=False)
         # players with at least 100 RBIs
         players_with_at_least_100_rbis = offensive_stats_df.loc[offensive_stats_df['RBI'] >= 100]
-        print(f'\n{year}_oakland_athletics_players_with_at_least_100_rbis_df:\n',players_with_at_least_100_rbis)
+        print(f'\n{year}_oakland_athletics_players_with_at_least_100_rbis:\n',players_with_at_least_100_rbis)
         # visualizations
         offensive_stats_df = pd.read_csv(f'mlb_cleanup/{year}_oakland_athletics_offensive_stats.csv')
         color = 'green'
