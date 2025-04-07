@@ -39,7 +39,7 @@ for team in teams:
                 # players with at least 10 RBIs
                 players_with_at_least_10_rbis_df = offensive_stats_df.loc[offensive_stats_df['RBI'] >= 10]
                 print(f'\n{year}_{team}_players_with_at_least_10_rbis_df:\n',players_with_at_least_10_rbis_df)
-                offensive_stats_df.to_csv(f'negro_leagues_cleanup/{year}_{team}_players_with_at_least_10_rbis_df.csv',index=False)                
+                offensive_stats_df.to_csv(f'negro_leagues_cleanup/{year}_{team}_players_with_at_least_10_rbis.csv',index=False)                
             except Exception as e:
                 print(f'cannot certain clean csv(s) due to data not available for certain years/seasons - {type(e)}')
     except Exception as e:
