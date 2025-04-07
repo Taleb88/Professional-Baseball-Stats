@@ -35,6 +35,9 @@ for team in teams:
                         return 'Right'
                 offensive_stats_df['Bats'] = offensive_stats_df.apply(lambda x: bats(x['Player']),axis='columns')
                 print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
+                # players with at least 100 RBIs
+                players_with_at_least_10_rbis = offensive_stats_df.loc[offensive_stats_df['RBI'] >= 100]
+                print(f'\n{year}_oakland_athletics_players_with_at_least_100_rbis_df:\n',players_with_at_least_100_rbis)                
             except Exception as e:
                 print(f'cannot certain clean csv(s) due to data not available for certain years/seasons - {type(e)}')
     except Exception as e:
