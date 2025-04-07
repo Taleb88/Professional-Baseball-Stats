@@ -23,8 +23,18 @@ for team in teams:
                 offensive_stats_df = offensive_stats_df.sort_values(by=['RBI'], ascending=False).drop('Rk', axis=1)
                 offensive_stats_df[['BA','OBP','SLG','OPS','rOBA','OPS+','Rbat+']] = offensive_stats_df[['BA','OBP','SLG','OPS','rOBA','OPS+','Rbat+']].astype(float).replace(0, 0.000).fillna(0)
                 offensive_stats_df = offensive_stats_df.drop(['Pos.1','Awards'],axis=1)
-                print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
+                # print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
                 offensive_stats_df.to_csv(f'negro_leagues_cleanup/{year}_{team}_offensive_stats.csv',index=False)
+                # adding new Bats column in all dataframes
+                def bats(x):
+                    if '*' in x:
+                        return 'Left'
+                    elif '#' in x:
+                        return 'Both'
+                    else:
+                        return 'Right'
+                offensive_stats_df['Bats'] = offensive_stats_df.apply(lambda x: bats(x['Player']),axis='columns')
+                print(f'\n{year}_{team}_offensive_stats_df:\n',offensive_stats_df)
             except Exception as e:
                 print(f'cannot certain clean csv(s) due to data not available for certain years/seasons - {type(e)}')
     except Exception as e:
